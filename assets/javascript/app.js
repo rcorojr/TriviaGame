@@ -81,7 +81,7 @@ function startQuiz(quizField, quizQuest, submitButton, resultsBox){
 
 //Timer
 
-var count=60;
+var count=100;
 
 var counter=setInterval(timer, 1000);
 
