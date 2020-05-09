@@ -72,33 +72,41 @@ var quizQuest = [
     },
 ]
 var lastQuestionIndex = quizQuest.length - 1;
-var runningQuestionIndex = 0;
 
-// function to initiate quiz
-// function startQuiz(quizField, quizQuest, submitButton, resultsBox){
-//     function viewQuest(quizQuest, quizField){
-//         var q = quizQuest[runningQuestionIndex];
-//         question.innerHTML = "<p>" +question+ "</p>";
-//         opt1.innerHTML = q.opt1;
-//         opt2.innerHTML = q.opt2;
-//         opt3.innerHTML = q.opt3;
-//       }
-// }
-function viewQuest(quizQuest, quizField){
+function viewQuest(quizQuest, runningQuestionIndex){
     var q = quizQuest[runningQuestionIndex];
-    question.innerHTML = "<p>" +question+ "</p>";
+    var questionelement = $("#quiz");
+    questionelement.append("<p>" + q.question + "</p>");
     opt1.innerHTML = q.opt1;
     opt2.innerHTML = q.opt2;
     opt3.innerHTML = q.opt3;
   }
 
+for (i=0; i<quizQuest.length; i++){
+    viewQuest(quizQuest, i)
+}
+
 //Timer
 
-var count=100;
+var count=200;
+var timerInterval=null;
+// var counter=setInterval(timer, 1000);
 
-var counter=setInterval(timer, 1000);
+// document.getElementById("startBtn").addEventListener("click", timer)
+document.getElementById("startBtn").addEventListener("click", function (){
+    if (timerInterval) clearInterval(timerInterval);
+    timerInterval = setInterval(timer, 1000)});
 
-// document.getElementById("startBtn").addEventListener("click", function timer()
+// document.getElementById("startBtn").addEventListener("click", function() {
+//     count=count-1;
+//     if (count <= 0)
+//     {
+//        clearInterval(counter);
+//        return;
+//     }  
+//     document.getElementById("timer").innerHTML=count;
+// })
+
 function timer()
 {
   count=count-1;
@@ -109,6 +117,6 @@ function timer()
   }  
   document.getElementById("timer").innerHTML=count;
 }
-// )
+
 
 
