@@ -85,33 +85,46 @@ function viewQuest(quizQuest, runningQuestionIndex){
     questionelement.append(opt3);
   }
 
-for (i=0; i<quizQuest.length; i++){
-    viewQuest(quizQuest, i)
-}
+
 
 //Timer
 
 var count=200;
 var timerInterval=null;
-$("input").on("click", function(){
-    var currentclickboxindex = $(this).attr("data-questionindex");
-    console.log(currentclickboxindex)
-    Array.from($("input")).forEach(function(checkbox){
-        if ($(checkbox).attr("data-questionindex")==currentclickboxindex
 
-        ){
-            console.log("foundmatches")
-            $(checkbox).prop("checked", false)
-        }
-    })
-    $(this).prop("checked", true);
-    
-})
 
 
 document.getElementById("startBtn").addEventListener("click", function (){
     if (timerInterval) clearInterval(timerInterval);
-    timerInterval = setInterval(timer, 1000)});
+    timerInterval = setInterval(timer, 1000)
+    $("#startBtn").hide();
+    for (i=0; i<quizQuest.length; i++){
+        viewQuest(quizQuest, i)
+    }
+    $("input").on("click", function(){
+        var currentclickboxindex = $(this).attr("data-questionindex");
+        var option = $(this).attr("data-option");
+            if (quizQuest[currentclickboxindex].correct===option
+    
+            ){
+                //this is correct statement
+    
+            }else {
+                //this is the incorrect statement
+            }
+        Array.from($("input")).forEach(function(checkbox){
+            if ($(checkbox).attr("data-questionindex")==currentclickboxindex
+    
+            ){
+                console.log("foundmatches")
+                $(checkbox).prop("checked", false)
+            }
+        })
+        $(this).prop("checked", true);
+        
+    })
+});
+  
 
 
 
